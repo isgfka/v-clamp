@@ -11,7 +11,6 @@
     </section>
 
     <section class="example">
-
       <div class="example__title">示例2</div>
       <div
         class="mt-20 homework-card__title"
@@ -32,7 +31,7 @@
       </div>
     </section>
 
-    <section class="example">
+    <!-- <section class="example">
       <div class="example__title">示例3</div>
       <el-tooltip
         :content="title"
@@ -45,6 +44,21 @@
             cb: obj => getClampResult(obj, 'isTitleClamp')
           }"></span>
       </el-tooltip>
+    </section> -->
+
+
+    <section class="example">
+      <div class="example__title">示例4</div>
+      <div
+        class="flex-box"
+        :class="{ 'flex-box--active': isActive }"
+        v-clamp="{
+          row: 2,
+          content: title,
+          delay: 300
+        }">
+      </div>
+      <el-button type="text" @click="isActive = !isActive">改变状态</el-button>
     </section>
   </div>
 </template>
@@ -59,7 +73,8 @@ export default {
       title: '测试输入内容五十个字测试输入内容五十个字测试输入内容五十个字测试输入内容五十个字测试输入内容五十个字',
       isPublished: true,
       submitStatus: 1,
-      isTitleClamp: false
+      isTitleClamp: false,
+      isActive: false
     };
   },
   computed: {
@@ -83,6 +98,14 @@ export default {
     margin: 50px auto;
     &__title {
       margin-bottom: 10px;
+    }
+  }
+  .flex-box {
+    border: 1px solid black;
+    width: 200px;
+    transition: all 0.3s;
+    &--active {
+      width: 300px;
     }
   }
   @include b(homework-card) {

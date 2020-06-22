@@ -135,6 +135,7 @@ function run (el, binding, node) {
   if (!delay) checkTextHeight(node, binding);
   else {
     setTimeout(() => {
+      // debugger;
       checkTextHeight(node, binding);
     }, delay + 100);
   }
@@ -146,6 +147,8 @@ export default {
       name: 'clamp',
       inserted: run,
       componentUpdated: (el, binding, node) => {
+        run(el, binding, node);
+
         if (binding.oldValue.content !== binding.value.content) {
           run(el, binding, node);
         }
