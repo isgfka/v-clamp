@@ -1,65 +1,19 @@
 <template>
   <div>
-    <section class="example">
-      <el-input class="mb-50" v-model="title"></el-input>
+    <template v-for="route in routers">
+      <el-button
+        :key="route"
+        type="text"
+        @click="$router.push({ name: route })"
+      >{{route}}</el-button>
+    </template>
 
-      <div class="example__title">示例1</div>
-      <div
-        v-clamp="{
-          content: title,
-        }"></div>
-    </section>
+    <el-input
+      class="mb-50"
+      v-model="title"
+    ></el-input>
 
-    <section class="example">
-      <div class="example__title">示例2</div>
-      <div
-        class="mt-20 homework-card__title"
-        v-clamp="{
-          row: 6,
-          content: title,
-          class: 'detailTitle'
-        }">
-        <span
-          v-if="isPublished"
-          class="homework-card__tag"
-          :class="{
-              'homework-card__tag--todo': submitStatus === 1,
-              'homework-card__tag--complete': submitStatus === 2,
-              'homework-card__tag--reviewed': submitStatus === 3
-            }">{{submitStatus === 1 ? '一个标签' : submitStatus === 2 ? '一个标签' : '一个标签'}}</span>
-        <span class="detailTitle"></span>
-      </div>
-    </section>
-
-    <!-- <section class="example">
-      <div class="example__title">示例3</div>
-      <el-tooltip
-        :content="title"
-        placement="top"
-        effect="light"
-        :disabled="!isTitleClamp">
-        <span
-          v-clamp="{
-            content: title,
-            cb: obj => getClampResult(obj, 'isTitleClamp')
-          }"></span>
-      </el-tooltip>
-    </section> -->
-
-
-    <section class="example">
-      <div class="example__title">示例4</div>
-      <div
-        class="flex-box"
-        :class="{ 'flex-box--active': isActive }"
-        v-clamp="{
-          row: 2,
-          content: title,
-          delay: 300
-        }">
-      </div>
-      <el-button type="text" @click="isActive = !isActive">改变状态</el-button>
-    </section>
+    <router-view :title="title"></router-view>
   </div>
 </template>
 
@@ -70,6 +24,7 @@ export default {
   },
   data () {
     return {
+      routers: ['sample_1', 'sample_2', 'sample_3', 'sample_4'],
       title: '测试输入内容五十个字测试输入内容五十个字测试输入内容五十个字测试输入内容五十个字测试输入内容五十个字',
       isPublished: true,
       submitStatus: 1,
@@ -92,7 +47,7 @@ export default {
 </script>
 
 <style lang="scss">
-  @import './src/scss/index.scss';
+  @import './src/assets/scss/index';
   .example {
     width: 300px;
     margin: 50px auto;
