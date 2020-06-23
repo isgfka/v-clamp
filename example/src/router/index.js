@@ -12,24 +12,24 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/sample_1',
-      name: 'sample_1',
-      component: () => import('../views/sample_1')
+      path: '/example_1',
+      name: 'example_1',
+      component: () => import('../views/example_1')
     },
     {
-      path: '/sample_2',
-      name: 'sample_2',
-      component: () => import('../views/sample_2')
+      path: '/example_2',
+      name: 'example_2',
+      component: () => import('../views/example_2')
     },
     {
-      path: '/sample_3',
-      name: 'sample_3',
-      component: () => import('../views/sample_3')
+      path: '/example_3',
+      name: 'example_3',
+      component: () => import('../views/example_3')
     },
     {
-      path: '/sample_4',
-      name: 'sample_4',
-      component: () => import('../views/sample_4')
+      path: '/example_4',
+      name: 'example_4',
+      component: () => import('../views/example_4')
     }
   ],
   scrollBehavior (to, from, savedPosition) {
