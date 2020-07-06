@@ -24,7 +24,7 @@ export default {
   },
   data () {
     return {
-      routers: ['example_1', 'example_2', 'example_3', 'example_4'],
+      routers: ['example_1', 'example_2', 'example_3', 'example_4', 'example_5'],
       title: '测试输入内容五十个字测试输入内容五十个字测试输入内容五十个字测试输入内容五十个字测试输入内容五十个字',
       isPublished: true,
       submitStatus: 1,

@@ -1,4 +1,3 @@
-/* eslint-disable */
 /**
  * Usage: v-clamp="{
  *    content: detail.title,
@@ -30,7 +29,7 @@
 function checkTextHeight (node, binding) {
   let rawContent = binding.value.content;
   let limitRows = binding.value.row || 1;
-  let targetNodeClass = binding.value.class; // TargetNode innerHTML of which to be modified.
+  let targetNodeClass = binding.value.class; // TargetNode innerText of which to be modified.
   let measureNode = node.elm; // Node that was bound with directive clamp.
   let targetNode;
   if (!rawContent) return;
@@ -50,14 +49,14 @@ function checkTextHeight (node, binding) {
   let maxHeight;
   const END_CHAR = '...';
   forceElemWordbreak(targetNode);
-  targetNode.innerHTML = '加载中';
+  targetNode.innerText = '加载中';
   let tOtherHeight = computedEffectHeightCSS(targetNode);
   let mOtherHeight = computedEffectHeightCSS(measureNode);
   let oneLineSurplusHeight = (measureNode.offsetHeight - mOtherHeight) - (targetNode.offsetHeight - tOtherHeight);
   // line-height can be effected by vertical-align
   const targetContentLineHeight = targetNode.offsetHeight - tOtherHeight;
   let textContent = rawContent.replace(/\n/g, '').replace(/\r/g, ''); // remove Word wrap
-  targetNode.innerHTML = textContent;
+  targetNode.innerText = textContent;
   maxHeight = oneLineSurplusHeight + targetContentLineHeight * limitRows + tOtherHeight;
   if (targetNode.offsetHeight <= maxHeight) {
     binding.value.cb && binding.value.cb({
@@ -74,7 +73,7 @@ function checkTextHeight (node, binding) {
   let isMultiple = obj.isMultiple;
   binding.value.cb && binding.value.cb(obj);
   // slice(0, -2) in case that when length changes may cause text overflow.
-  targetNode.innerHTML = isMultiple ? `${content.slice(0, -1)}${END_CHAR}` : content;
+  targetNode.innerText = isMultiple ? `${content.slice(0, -1)}${END_CHAR}` : content;
 
   /**
    * Calculate clamped content
@@ -88,14 +87,14 @@ function checkTextHeight (node, binding) {
     let currentStr = textStr.slice(0, midLoc) + END_CHAR;
     if (startLoc >= endLoc - 1) {
       while (targetNode.offsetHeight > maxHeight) {
-        targetNode.innerHTML = textStr.slice(0, --endLoc) + END_CHAR;
+        targetNode.innerText = textStr.slice(0, --endLoc) + END_CHAR;
       }
       return {
         isMultiple: true,
         subContent: textStr.slice(0, endLoc)
       };
     }
-    targetNode.innerHTML = currentStr;
+    targetNode.innerText = currentStr;
     if (targetNode.offsetHeight <= maxHeight) {
       return measureText(textStr, midLoc, endLoc, midLoc);
     }

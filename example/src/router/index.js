@@ -30,6 +30,11 @@ export default new Router({
       path: '/example_4',
       name: 'example_4',
       component: () => import('../views/example_4')
+    },
+    {
+      path: '/example_5',
+      name: 'example_5',
+      component: () => import('../views/example_5')
     }
   ],
   scrollBehavior (to, from, savedPosition) {
